@@ -1,6 +1,6 @@
 import yabaiUtil
 
-def cycleSpaceDown():
+def cycleSpaceLeft():
   currentSpace = yabaiUtil.query("--spaces --space")
   displaySpaces = yabaiUtil.query("--spaces --display")
   currentIndex = displaySpaces.index(currentSpace)
@@ -12,4 +12,5 @@ def cycleSpaceDown():
 
   yabaiUtil.runCommand(f"space --focus {displaySpaces[nextIndex]['index']}")
 
-cycleSpaceDown()
+if __name__ == "__main__":
+  cycleSpaceLeft()
