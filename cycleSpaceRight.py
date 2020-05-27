@@ -3,12 +3,9 @@ import yabaiUtil
 def cycleSpaceRight():
   currentSpace = yabaiUtil.query("--spaces --space")
   displaySpaces = yabaiUtil.query("--spaces --display")
-  currentIndex = displaySpaces.index(currentSpace)
+  currentPosition = displaySpaces.index(currentSpace) + 1
 
-  if currentIndex >= len(displaySpaces) - 1:
-    nextIndex = 0
-  else:
-    nextIndex = currentIndex + 1
+  nextIndex = 0 if currentPosition >= len(displaySpaces) else currentPosition
 
   yabaiUtil.runCommand(f"space --focus {displaySpaces[nextIndex]['index']}")
 
