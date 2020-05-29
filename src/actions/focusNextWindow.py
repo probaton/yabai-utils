@@ -1,4 +1,4 @@
-from yabaiUtil import runCommand
+from ..commandLine.yabaiUtil import runCommand
 
 def focusNextWindow(windows):
   passedFocusedWindow = False

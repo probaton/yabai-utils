@@ -1,4 +1,4 @@
-import yabaiUtil
+from ..commandLine import yabaiUtil
 
 def cycleSpaceRight():
   currentSpace = yabaiUtil.query("--spaces --space")
