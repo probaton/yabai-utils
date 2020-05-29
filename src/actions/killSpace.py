@@ -1,4 +1,4 @@
-from yabaiUtil import query, runCommand
+from ..commandLine.yabaiUtil import query, runCommand
 
 def killSpace():
   currentSpace = query("--spaces --space")["index"]
