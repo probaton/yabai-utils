@@ -1,4 +1,5 @@
 from ..commandLine import yabaiUtil
+from .switchSpace import switchSpace
 
 def cycleSpaceLeft():
   currentSpace = yabaiUtil.query("--spaces --space")
@@ -7,7 +8,7 @@ def cycleSpaceLeft():
 
   nextIndex = (len(displaySpaces) if currentIndex == 0 else currentIndex) - 1
 
-  yabaiUtil.runCommand(f"space --focus {displaySpaces[nextIndex]['index']}")
+  switchSpace(currentSpace, displaySpaces[nextIndex])
 
 if __name__ == "__main__":
   cycleSpaceLeft()
