@@ -1,4 +1,5 @@
 from ..commandLine.yabaiUtil import query, runCommand
+from .switchSpace import switchSpace
 
 def getEmptySpace():
   spaces = query("--spaces --display")
@@ -12,7 +13,7 @@ def moveWindowToEmptySpace():
     emptySpace = getEmptySpace()
   
   runCommand(f"window --space {emptySpace['index']}")
-  runCommand(f"space --focus {emptySpace['index']}")
+  switchSpace(emptySpace)
 
 if __name__ == "__main__":
   moveWindowToEmptySpace()

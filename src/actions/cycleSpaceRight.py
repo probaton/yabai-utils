@@ -8,7 +8,7 @@ def cycleSpaceRight():
 
   nextIndex = 0 if currentPosition >= len(displaySpaces) else currentPosition
 
-  switchSpace(currentSpace, displaySpaces[nextIndex])
+  switchSpace(displaySpaces[nextIndex], currentSpace)
 
 if __name__ == "__main__":
   cycleSpaceRight()

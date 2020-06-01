@@ -1,4 +1,5 @@
 from ..commandLine.yabaiUtil import query, runCommand
+from .restoreWindowFocus import restoreWindowFocus
 
 def killSpace():
   currentSpace = query("--spaces --space")["index"]
@@ -8,6 +9,7 @@ def killSpace():
     runCommand(f"window {winId} --close")
   
   runCommand(f"space --destroy {currentSpace}")
+  restoreWindowFocus(query("--spaces --space"))
 
 if __name__ == "__main__":
   killSpace()
