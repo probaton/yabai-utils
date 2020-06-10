@@ -8,7 +8,7 @@ def killSpace():
   for winId in winIds:
     runCommand(f"window {winId} --close")
   
-  runCommand(f"space --destroy {currentSpace}")
+  runCommand(f"space {currentSpace} --destroy")
   restoreWindowFocus(query("--spaces --space"))
 
 if __name__ == "__main__":
