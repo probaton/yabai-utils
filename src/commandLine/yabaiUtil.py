@@ -2,11 +2,7 @@ import subprocess
 import json
 
 def __runCommand(command):
-  process = subprocess.run(command.split(),
-    stdout=subprocess.PIPE, 
-    stderr=subprocess.PIPE,
-    universal_newlines=True)
-  
+  process = subprocess.run(command.split(), stdout = subprocess.PIPE, stderr = subprocess.PIPE, universal_newlines = True)
   if process.stderr:
     raise Exception(f"Command <{command}> failed:\n{process.stderr}")
 
