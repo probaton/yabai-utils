@@ -3,12 +3,14 @@ from .switchSpace import switchSpace
 
 def getEmptySpace():
   spaces = query("--spaces --display")
-  return next(space for space in spaces if space["windows"] == [])
+  try:
+    return next(space for space in spaces if space["windows"] == [])
+  except StopIteration:
+    return None
 
 def moveWindowToEmptySpace():
-  try:
-    emptySpace = getEmptySpace()
-  except StopIteration:
+  emptySpace = getEmptySpace()
+  if not emptySpace:
     runCommand("space --create")
     emptySpace = getEmptySpace()
   

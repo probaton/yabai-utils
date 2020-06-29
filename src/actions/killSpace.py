@@ -1,15 +1,28 @@
 from ..commandLine.yabaiUtil import query, runCommand
 from .restoreWindowFocus import restoreWindowFocus
 
+def getCurrentSpace(displayIndex):
+  currentDisplaySpaces = query(f"--spaces --display {displayIndex}")
+  try:
+    return next(space for space in currentDisplaySpaces if space["visible"] == 1)["index"]
+  except StopIteration:
+    return None 
+
 def killSpace():
-  currentSpace = query("--spaces --space")["index"]
+  currentDisplay = query("--displays --display")["index"]
+  currentSpace = getCurrentSpace(currentDisplay)
 
   winIds = map(lambda win: win["id"], query("--windows --space"))
   for winId in winIds:
     runCommand(f"window {winId} --close")
   
   runCommand(f"space {currentSpace} --destroy")
-  restoreWindowFocus(query("--spaces --space"))
+
+  newCurrentSpace = getCurrentSpace(currentDisplay)
+  if newCurrentSpace:
+    restoreWindowFocus(query(f"--spaces --space {newCurrentSpace}"))
+  else:
+    restoreWindowFocus(query("--spaces --space"))
 
 if __name__ == "__main__":
   killSpace()
