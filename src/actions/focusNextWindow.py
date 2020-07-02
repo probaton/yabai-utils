@@ -1,4 +1,5 @@
 from ..commandLine import yabaiUtil
+from ..store.storeId import storeId
 
 def focusNextWindow(reverse = False):
   visibleWindows = list(filter(lambda s: s["visible"] == 1, yabaiUtil.query("--windows")))
@@ -6,11 +7,14 @@ def focusNextWindow(reverse = False):
   if reverse:
     visibleWindows.reverse()
 
-  passedFocusedWindow = False
-  for window in visibleWindows:
-    if passedFocusedWindow:
-      yabaiUtil.runCommand(f"window --focus {window['id']}")
-      break
-    if window["focused"] == 1:
-      passedFocusedWindow = True
-      
+  currentWindow = next(window for window in visibleWindows if window["focused"] == 1)
+  try:
+    nextWindow = visibleWindows[visibleWindows.index(currentWindow) + 1]
+  except IndexError:
+    return
+
+  if currentWindow["display"] != nextWindow["display"]:
+    currentSpace = yabaiUtil.query("--spaces --space")
+    storeId(currentSpace["id"], currentWindow["id"], "space")
+  
+  yabaiUtil.runCommand(f"window --focus {nextWindow['id']}")
