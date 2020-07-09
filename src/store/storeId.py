@@ -4,7 +4,7 @@ def makeDirIfNotEmpty(dirName):
   try:
     os.makedirs(dirName)
   except OSError:
-    pass
+    return
 
 def storeId(parentId, childId, type):
   os.chdir(__file__[:-20])

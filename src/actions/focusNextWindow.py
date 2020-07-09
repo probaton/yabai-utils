@@ -13,7 +13,7 @@ def focusNextWindow(reverse = False):
   except IndexError:
     return
 
-  if currentWindow["display"] != nextWindow["display"]:
+  if currentWindow["space"] != nextWindow["space"]:
     currentSpace = yabaiUtil.query("--spaces --space")
     storeId(currentSpace["id"], currentWindow["id"], "space")
   
