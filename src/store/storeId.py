@@ -7,7 +7,7 @@ def makeDirIfNotEmpty(dirName):
     return
 
 def storeId(parentId, childId, type):
-  os.chdir(__file__[:-20])
+  os.chdir(os.path.abspath(__file__)[:-20])
   makeDirIfNotEmpty("db")
   makeDirIfNotEmpty(f"db/{type}")
 

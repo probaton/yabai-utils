@@ -1,5 +1,6 @@
 import sys
 
+from src.log import log
 from src.actions.cycleDisplaySpaces import cycleDisplaySpaces
 from src.actions.focusDisplay import focusDisplay
 from src.actions.focusNextWindow import focusNextWindow
@@ -17,4 +18,8 @@ switcher = {
   "kill-space": killSpace,
   "move-window-to-empty-space": moveWindowToEmptySpace,
 }
-switcher.get(sys.argv[1], lambda: print("Invalid instruction"))()
+try:
+  switcher.get(sys.argv[1], lambda: print("Invalid instruction"))()
+except Exception as e:
+  log(str(e))
+  raise e
