@@ -6,6 +6,7 @@ from src.actions.focusDisplay import focusDisplay
 from src.actions.focusNextWindow import focusNextWindow
 from src.actions.killEmptySpaces import killEmptySpaces
 from src.actions.killSpace import killSpace
+from src.actions.moveWindowToDisplay import moveWindowToDisplay
 from src.actions.moveWindowToEmptySpace import moveWindowToEmptySpace
 
 switcher = {
@@ -16,10 +17,11 @@ switcher = {
   "focus-window-right": lambda: focusNextWindow(),
   "kill-empty-spaces": lambda: killEmptySpaces(),
   "kill-space": killSpace,
+  "move-window-to-display": lambda: moveWindowToDisplay(sys.argv[2]),
   "move-window-to-empty-space": moveWindowToEmptySpace,
 }
 try:
   switcher.get(sys.argv[1], lambda: print("Invalid instruction"))()
 except Exception as e:
-  log(str(e))
+  log(f"Failed to execute {sys.argv[1]}:\n{str(e)}")
   raise e
