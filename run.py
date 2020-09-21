@@ -8,6 +8,7 @@ from src.actions.killEmptySpaces import killEmptySpaces
 from src.actions.killSpace import killSpace
 from src.actions.moveWindowToDisplay import moveWindowToDisplay
 from src.actions.moveWindowToEmptySpace import moveWindowToEmptySpace
+from src.actions.moveSpaceToDisplay import moveSpaceToDisplay
 
 switcher = {
   "cycle-space-left": lambda: cycleDisplaySpaces(True),
@@ -19,6 +20,7 @@ switcher = {
   "kill-space": killSpace,
   "move-window-to-display": lambda: moveWindowToDisplay(sys.argv[2]),
   "move-window-to-empty-space": moveWindowToEmptySpace,
+  "move-space-to-display": lambda: moveSpaceToDisplay(sys.argv[2]),
 }
 try:
   switcher.get(sys.argv[1], lambda: print("Invalid instruction"))()
