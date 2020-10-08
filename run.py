@@ -9,6 +9,7 @@ from src.actions.killSpace import killSpace
 from src.actions.moveWindowToDisplay import moveWindowToDisplay
 from src.actions.moveWindowToEmptySpace import moveWindowToEmptySpace
 from src.actions.moveSpaceToDisplay import moveSpaceToDisplay
+from src.actions.resizeWindow import WindowResizer
 
 switcher = {
   "cycle-space-left": lambda: cycleDisplaySpaces(True),
@@ -21,6 +22,8 @@ switcher = {
   "move-window-to-display": lambda: moveWindowToDisplay(sys.argv[2]),
   "move-window-to-empty-space": moveWindowToEmptySpace,
   "move-space-to-display": lambda: moveSpaceToDisplay(sys.argv[2]),
+  "expand-window": WindowResizer().expand,
+  "shrink-window": WindowResizer().shrink,
 }
 try:
   switcher.get(sys.argv[1], lambda: print("Invalid instruction"))()
