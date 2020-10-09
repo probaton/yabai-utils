@@ -13,8 +13,8 @@ def switchSpace(targetSpace, currentSpace = None):
 
   try:
     yabaiUtil.runCommand(f"space --focus {targetSpace['index']}")
-  except Exception as err:
-    if str(err).endswith("cannot focus an already focused space."):
-      pass
+  except Exception as e:
+    if not str(e).endswith("cannot focus an already focused space.\n"):
+      raise e
 
   restoreWindowFocus(targetSpace)

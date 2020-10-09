@@ -3,6 +3,8 @@ import os
 from datetime import datetime
 
 def log(message):
+  print(message)
+
   os.chdir(os.path.abspath(__file__)[:-10])
   try:
     os.makedirs("logs")
