@@ -22,11 +22,10 @@ switcher = {
   "move-window-to-display": lambda: moveWindowToDisplay(sys.argv[2]),
   "move-window-to-empty-space": moveWindowToEmptySpace,
   "move-space-to-display": lambda: moveSpaceToDisplay(sys.argv[2]),
-  "expand-window": WindowResizer().expand,
-  "shrink-window": WindowResizer().shrink,
+  "expand-window": lambda: WindowResizer().expand(),
+  "shrink-window": lambda: WindowResizer().shrink(),
 }
 try:
-  switcher.get(sys.argv[1], lambda: print("Invalid instruction"))()
+  switcher.get(sys.argv[1], lambda: log("Invalid instruction"))()
 except Exception as e:
   log(f"Failed to execute {sys.argv[1]}:\n{str(e)}")
-  raise e
