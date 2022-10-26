@@ -4,7 +4,7 @@ from .restoreWindowFocus import restoreWindowFocus
 def getCurrentSpace(displayIndex):
   currentDisplaySpaces = query(f"--spaces --display {displayIndex}")
   try:
-    return next(space for space in currentDisplaySpaces if space["visible"] == 1)["index"]
+    return next(space for space in currentDisplaySpaces if space["is-visible"] == True)["index"]
   except StopIteration:
     return None 
 

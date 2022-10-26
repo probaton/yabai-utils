@@ -4,7 +4,7 @@ from .switchSpace import switchSpace
 def focusDisplay(targetDisplayIndex):
   targetDisplaySpaces = query(f"--spaces --display {targetDisplayIndex}")
   try:
-    targetSpace = next(space for space in targetDisplaySpaces if space["visible"] == 1)
+    targetSpace = next(space for space in targetDisplaySpaces if space["is-visible"] == True)
     switchSpace(targetSpace, query("--spaces --space"))
   except StopIteration:
     pass  

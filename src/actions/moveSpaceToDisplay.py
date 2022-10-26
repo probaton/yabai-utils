@@ -3,7 +3,7 @@ from ..commandLine.yabaiUtil import query, runCommand
 def moveSpaceToDisplay(targetDisplayIndex):
   allSpaces = query("--spaces")
   try:
-    currentSpace = next(space for space in allSpaces if space["focused"] == 1)
+    currentSpace = next(space for space in allSpaces if space["has-focus"] == True)
   except StopIteration:
     return
 

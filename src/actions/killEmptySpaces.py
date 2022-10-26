@@ -8,13 +8,13 @@ def killEmptySpaces():
   resetFocus = False
   for space in spaces:
     if space["windows"] == []:
-      if space["focused"] == 1:
+      if space["has-focus"] == True:
         resetFocus = True
       runCommand(f"space {space['index']} --destroy")
 
   if resetFocus:
     try:
-      next(space for space in spaces if space["focused"] == 1)
+      next(space for space in spaces if space["has-focus"] == True)
       restoreWindowFocus(space)
     except StopIteration:
       pass

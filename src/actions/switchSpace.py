@@ -6,7 +6,7 @@ def switchSpace(targetSpace, currentSpace = None):
   if currentSpace:
     currentSpaceWindows = yabaiUtil.query(f"--windows --space {currentSpace['index']}")
     try:
-      focusedWindow = next(window for window in currentSpaceWindows if window["focused"] == 1)
+      focusedWindow = next(window for window in currentSpaceWindows if window["has-focus"] == True)
       storeId(currentSpace["id"], focusedWindow["id"], "space")
     except StopIteration:
       pass
